@@ -1,0 +1,49 @@
+{
+  "name": "rest-api-todos-without-database",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/titeller/rest-api-todos-without-database.git",
+  "author": "Kitti Piyapan <kitti.piyapan@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "nodemon",
+    "prestart": "yarn build",
+    "start": "node ./dist/server",
+    "prebuild": "rimraf ./dist",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "fs": "^0.0.1-security",
+    "helmet": "^7.1.0",
+    "module-alias": "^2.2.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.4",
+    "path": "^0.12.7",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^20.14.9",
+    "@types/uuid": "^10.0.0",
+    "rimraf": "^5.0.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.2"
+  },
+  "_moduleAliases": {
+    "@src": "dist",
+    "@routes": "dist/routes",
+    "@constants": "dist/constants",
+    "@controllers": "dist/controllers",
+    "@services": "dist/services",
+    "@models": "dist/models",
+    "@entries": "dist/entries",
+    "@utils": "dist/utils",
+    "@libs": "dist/libs",
+    "@data": "dist/data"
+  }
+}
