@@ -1,4 +1,5 @@
-import { Todo } from "@libs/todo.libs";
+import { TypeTodoStatus } from '@entries/todo.entries';
+import { Todo } from '@libs/todo.libs';
 
 const todoService = new Todo();
 
@@ -28,6 +29,11 @@ export const updateTodoService = (
   tags: string[]
 ) => {
   const result = todoService.updateTodo(id, title, content, tags);
+  return result;
+};
+
+export const updateTodoStatusService = (id: string, status: TypeTodoStatus) => {
+  const result = todoService.updateTodoStatus(id, status);
   return result;
 };
 

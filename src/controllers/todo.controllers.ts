@@ -1,5 +1,5 @@
-import type { Request, Response } from "express";
-import * as todoServices from "@services/todo.services";
+import type { Request, Response } from 'express';
+import * as todoServices from '@services/todo.services';
 
 export const getAllTodoController = (req: Request, res: Response) => {
   const result = todoServices.getAllTodoService();
@@ -22,6 +22,13 @@ export const updateTodoController = (req: Request, res: Response) => {
   const { id } = req.params;
   const { title, content, tags } = req.body;
   const result = todoServices.updateTodoService(id, title, content, tags);
+  res.send(result);
+};
+
+export const updateTodoStatusController = (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  const result = todoServices.updateTodoStatusService(id, status);
   res.send(result);
 };
 

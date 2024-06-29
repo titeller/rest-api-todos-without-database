@@ -1,19 +1,19 @@
-import todosJSON from "@data/todos.json";
-import { ITodo, TypeTodos } from "@entries/todo.entries";
-import { getDate, getNewId, writeJSONFile } from "@utils/todos.utils";
+import todosJSON from '@data/todos.json';
+import { ITodo, TypeTodos, TypeTodoStatus } from '@entries/todo.entries';
+import { getDate, getNewId, writeJSONFile } from '@utils/todos.utils';
 
 export class Todo {
   todos: TypeTodos = [];
   constructor(todos?: TypeTodos) {
-    this.todos = todos ? todos : todosJSON;
+    this.todos = todos ? todos : (todosJSON as TypeTodos);
   }
 
-  private getTodoIndexById(id: string) {
+  private getTodoIndexById(id: string): number {
     return this.todos.findIndex((todos) => todos.id == id);
   }
 
-  private commitToJSON() {
-    writeJSONFile("dist/data/todos.json", this.todos);
+  private commitToJSON(): void {
+    writeJSONFile('dist/data/todos.json', this.todos);
   }
 
   getAllTodos() {
@@ -37,10 +37,12 @@ export class Todo {
   ): ITodo | undefined {
     const id = getNewId();
     const transactionDate = getDate();
+    const status = 'pending';
     this.todos.push({
       id,
       title,
       content,
+      status,
       tags,
       createdAt: transactionDate,
       updatedAt: transactionDate,
@@ -48,6 +50,21 @@ export class Todo {
     this.commitToJSON();
     const todoCreated = this.getTodoById(id);
     return todoCreated;
+  }
+
+  updateTodoStatus(id: string, status: TypeTodoStatus): ITodo | undefined {
+    const todoIndex = this.getTodoIndexById(id);
+    if (todoIndex === -1) return;
+
+    const transactionDate = getDate();
+    this.todos[todoIndex] = {
+      ...this.todos[todoIndex],
+      status,
+      updatedAt: transactionDate,
+    };
+    this.commitToJSON();
+    const todoUpdated = this.getTodoById(id);
+    return todoUpdated;
   }
 
   updateTodo(

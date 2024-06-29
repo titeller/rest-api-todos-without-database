@@ -35,7 +35,6 @@
       "@constants/*": ["./constants/*"],
       "@controllers/*": ["./controllers/*"],
       "@services/*": ["./services/*"],
-      "@models/*": ["./models/*"],
       "@entries/*": ["./entries/*"],
       "@utils/*": ["./utils/*"],
       "@libs/*": ["./libs/*"],
