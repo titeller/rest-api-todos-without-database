@@ -6,7 +6,7 @@ method `GET`
 `/api/todo`
 
 response
-```
+```json
 {
     "count": 3,
     "data": {
@@ -60,7 +60,7 @@ response
 method `POST`
 path `/api/todo`
 request body
-```
+```json
 {
 	"title": "ggwp",
 	"content": "abcd",
@@ -76,7 +76,7 @@ path `/api/todo/:todoId`
 method `PUT`
 path `/api/todo/:todoId`
 request body
-```
+```json
 {
 	"title": "ggwp",
 	"content": "abcd",
@@ -88,7 +88,7 @@ request body
 method `PUT`
 path `/api/todo/:todoId`
 request body
-```
+```json
 {
 	"status": "completed"
 }
